@@ -1,0 +1,398 @@
+name: Project TBA
+source code: |-
+  input: '00-00000/00000'
+  blank: ' '
+  start state: minus
+  table:
+    done:
+
+    # Penyebut
+    minus:
+      0: {write: ' ', R: M1}
+      ' ': {R: end_minus}
+    M1:
+      '-': {R: M2}
+      0: R
+      ' ': {L: M2}
+    M2:
+      0: {write: 'X', L: M3}
+      'X': R
+    M3:
+      0: L
+      '-': {L: minus}
+      'X': L
+    end_minus:
+      'X': {write: ' ', R}
+      '-': {write: ' ', R}
+      0: R
+      '/': {L: Bfactorial}
+
+    Bfactorial:
+      0: {write: 'Z', L}
+      ' ': {write: 1, L: BF1}
+      1: {R: BF2}
+      'Z': {write: 0, R}
+    BF1:
+      ' ': {write: 0, R: Bfactorial}
+    BF2:
+      Z: {write: 0, R: BF3}
+      '/': {L: BF3}
+    BF3:
+      Z: {write: 0, R: BF4}
+      1: L
+      0: {write: ' ', R: Bend_factorial}
+      '/': {L: BF4}
+    BF4:
+      '/': {L: Bcross}
+      'Z': {L: Bcross}
+      0: L
+      1: {L: BF5}
+    BF5:
+      0: {write: ' ', L}
+      ' ': R
+      1: {write: ' ', R: Bend_factorial}
+    Bend_factorial:
+      0: R
+      1: {write: 0, R}
+      '/': {R: factorial}
+
+    Bcross:
+      0: L
+      1: L
+      ' ': {write: 1, R: BC1}
+    BC1:
+      0: R
+      1: {L: BC2}
+      'X': R
+    BC2:
+      'X': L
+      0: {write: 'X', L: BC3}
+      1: {R: BC8}
+    BC3:
+      0: L
+      1: L
+      ' ': {write: 0, R: BC4}
+    BC4:
+      0: R
+      1: {R: BC1}
+    BC5:
+      0: R
+      1: R
+      'X': R
+      '/': {L: BC6}
+      'Z': {L: BC6}
+    BC6:
+      0: {write: 'X', L: BC7}
+      'X': L
+      1: {L: BC9}
+    BC7:
+      0: L
+      1: {R: BC13}
+    BC8:
+      X: {write: '0', R}
+      1: {R: BC5}
+    BC9:
+      0: {write: X, L: BC10}
+      1: {write: 0, L: BC15}
+    BC10:
+      0: L
+      1: L
+      ' ': {R: BC11}
+    BC11:
+      0: {write: ' ', R: BC12}
+    BC12:
+      0: R
+      1: R
+      'X': {write: 0, L: BC9}
+    BC13:
+      0: {L: BC14}
+      'X': {L: BC6}
+    BC14:
+      1: {L: BC1}
+    BC15:
+      0: L
+      ' ': {R: BC16}
+    BC16:
+      0: {write: ' ', R: BC17}
+    BC17:
+      0: R
+      1: R
+      'X': {write: 0, R}
+      'Z': {write: 0, L: Bcross}
+      '/': {L: BC18}
+    BC18:
+      'Z': {write: ' ', L}
+      0: {write: ' ', L}
+      1: {write: ' ', L: Bend_cross}
+    Bend_cross:
+      0: L
+      ' ': {write: 1, R: Badjust}
+
+    Badjust:
+      0: R
+      ' ': {L: BA1}
+    BA1:
+      0: {write: ' ', R: BA4}
+      1: {write: ' ', R: Bend_adjust}
+    BA2:
+      0: L
+      ' ': {write: 0, L: BA3}
+    BA3:
+      ' ': L
+      0: L
+      1: {R: Badjust}
+    BA4:
+      0: R
+      ' ': R
+      '/': {L: BA2}
+    Bend_adjust:
+      ' ': R
+      0: R
+      '/': {R: factorial}
+
+
+
+    # Pembilang
+    factorial:
+      '/': R
+      0: {write: 'Z', R}
+      ' ': {write: 1, R: F1}
+      1: {L: F2}
+      'Z': {write: 0, L}
+    F1:
+      ' ': {write: 0, L: factorial}
+    F2:
+      Z: {write: 0, L: F3}
+      ' ': {R: F3}
+    F3:
+      Z: {write: 0, L: F4}
+      1: {write: ' ', R: end_factorial}
+      '/': {R: F4}
+    F4:
+      '/': {R: cross}
+      'Z': {R: cross}
+      0: {write: ' ', R}
+      1: {write: ' ', R: end_factorial}
+    end_factorial:
+
+    cross:
+      0: R
+      1: R
+      ' ': {write: 1, L: C1}
+    C1:
+      0: L
+      1: {R: C2}
+      'X': L
+    C2:
+      'X': R
+      0: {write: 'X', R: C3}
+      1: {L: C8}
+    C3:
+      0: R
+      1: R
+      ' ': {write: 0, L: C4}
+    C4:
+      0: L
+      1: {L: C1}
+    C5:
+      0: L
+      1: L
+      'X': L
+      '/': {R: C6}
+      'Z': {R: C6}
+    C6:
+      0: {write: 'X', R: C7}
+      'X': R
+      1: {R: C9}
+    C7:
+      0: R
+      1: {L: C13}
+    C8:
+      X: {write: '0', L}
+      1: {L: C5}
+    C9:
+      0: {write: X, R: C10}
+      1: {write: 0, R: C15}
+    C10:
+      0: R
+      1: R
+      ' ': {L: C11}
+    C11:
+      0: {write: ' ', L: C12}
+    C12:
+      0: L
+      1: L
+      'X': {write: 0, R: C9}
+    C13:
+      0: {R: C14}
+      'X': {R: C6}
+    C14:
+      1: {R: C1}
+    C15:
+      0: R
+      ' ': {L: C16}
+    C16:
+      0: {write: ' ', L: C17}
+    C17:
+      0: L
+      1: L
+      'X': {write: 0, L}
+      'Z': {write: 0, R: cross}
+      '/': {R: C18}
+    C18:
+      'Z': {write: ' ', R}
+      '0': {write: ' ', R}
+      1: {write: ' ', R: end_cross}
+    end_cross:
+      0: R
+      ' ': {write: 1, L: adjust}
+
+    adjust:
+      0: L
+      ' ': {R: A1}
+    A1:
+      0: {write: ' ', L: A2}
+      1: {write: ' ', L: end_adjust}
+    A2:
+      ' ': L
+      0: L
+      '/': {R: A3}
+    A3:
+      ' ': {write: 0, R: A4}
+      0: R
+    A4:
+      ' ': R
+      0: R
+      1: {L: adjust}
+    end_adjust:
+      ' ': L
+      0: L
+      '/': {R: last_prep}
+
+
+    # Hasil akhir
+    last_prep:
+      0: R
+      ' ': {write: '/', L: P1}
+    P1:
+      0: L
+      '/': L
+      ' ': {R: divide}
+    divide:
+      0: {write: ' ', R: D1}
+      '/': {R: D4}
+    D1:
+      0: R
+      '/': {R: D2}
+    D2:
+      'X': R
+      0: {write: 'X', L: D3}
+      '/': {write: ' ', L: D6}
+    D3:
+      0: L
+      '/': L
+      'X': L
+      ' ': {write: 0, R: divide}
+    D4:
+      'X': R
+      0: R
+      '/': R
+      ' ': {write: 0, L: D5}
+    D5:
+      0: L
+      '/': L
+      'X': L
+      ' ': {R: divide}
+    D6:
+      'X': {write: ' ', L}
+      0: {write: ' ', L}
+      '/': {write: ' ', L}
+      ' ': {R: D7}
+    D7:
+      ' ': R
+      0: {L: end_divide}
+    end_divide:
+      ' ': {R: done}
+positions:
+  done: {x: 80.77, y: 1943.56}
+  minus: {x: 85.59, y: 109.91}
+  M1: {x: 83.48, y: 391.54}
+  M2: {x: 342.98, y: 390.03}
+  M3: {x: 344.41, y: 258.12}
+  end_minus: {x: 510.06, y: 118.28}
+  Bfactorial: {x: 764.64, y: 117.69}
+  BF1: {x: 702.65, y: 252}
+  BF2: {x: 974.7, y: 117.18}
+  BF3: {x: 1156.53, y: 119.75}
+  BF4: {x: 1162.76, y: 296.98}
+  BF5: {x: 1369.54, y: 294.23}
+  Bend_factorial: {x: 1884.68, y: 125.9}
+  Bcross: {x: 1210.88, y: 442.44}
+  BC1: {x: 1034.69, y: 439.47}
+  BC2: {x: 862.18, y: 441.59}
+  BC3: {x: 808.54, y: 311.64}
+  BC4: {x: 984.48, y: 314.89}
+  BC5: {x: 529.51, y: 438.62}
+  BC6: {x: 315.08, y: 559.84}
+  BC7: {x: 664.84, y: 691.93}
+  BC8: {x: 677.73, y: 440.02}
+  BC9: {x: 459.12, y: 739.61}
+  BC10: {x: 171.24, y: 736.68}
+  BC11: {x: 173.02, y: 882.02}
+  BC12: {x: 457.17, y: 884.12}
+  BC13: {x: 653.2, y: 545.77}
+  BC14: {x: 929.23, y: 608.58}
+  BC15: {x: 678.81, y: 800.03}
+  BC16: {x: 942.39, y: 802.59}
+  BC17: {x: 1200.31, y: 635.41}
+  BC18: {x: 1114.01, y: 826.8}
+  Bend_cross: {x: 1342.52, y: 830.59}
+  Badjust: {x: 1346.05, y: 602.04}
+  BA1: {x: 1526.94, y: 691.53}
+  BA2: {x: 1711.8, y: 431.89}
+  BA3: {x: 1469.17, y: 431.13}
+  BA4: {x: 1739.92, y: 606.55}
+  Bend_adjust: {x: 1718.45, y: 806.4}
+  factorial: {x: 1895.3, y: 1376.9}
+  F1: {x: 1902.57, y: 1532.12}
+  F2: {x: 1751.9, y: 1372.79}
+  F3: {x: 1753.19, y: 1237.25}
+  F4: {x: 1657.31, y: 1097.57}
+  end_factorial: {x: 1483.62, y: 1236.97}
+  cross: {x: 1362.9, y: 1025.64}
+  C1: {x: 572.43, y: 1011.19}
+  C2: {x: 160.74, y: 1158.32}
+  C3: {x: 48.05, y: 1010.46}
+  C4: {x: 347.47, y: 1013.34}
+  C5: {x: 398.8, y: 1345.21}
+  C6: {x: 704.32, y: 1346.44}
+  C7: {x: 809.12, y: 1134.33}
+  C8: {x: 162.7, y: 1344.42}
+  C9: {x: 982.16, y: 1298}
+  C10: {x: 943.13, y: 1163.79}
+  C11: {x: 1184.67, y: 1170.37}
+  C12: {x: 1224.05, y: 1303.5}
+  C13: {x: 606.56, y: 1130.49}
+  C14: {x: 465.11, y: 1166.91}
+  C15: {x: 988.29, y: 1461.61}
+  C16: {x: 1205.81, y: 1462.75}
+  C17: {x: 1362.86, y: 1393.97}
+  C18: {x: 1591.01, y: 1572.08}
+  end_cross: {x: 1595.13, y: 1775.73}
+  adjust: {x: 1437.34, y: 1776.78}
+  A1: {x: 1168.32, y: 1775.29}
+  A2: {x: 911.77, y: 1774.3}
+  A3: {x: 909.16, y: 1643.99}
+  A4: {x: 1276.48, y: 1647}
+  end_adjust: {x: 1169.06, y: 1932.39}
+  last_prep: {x: 981.28, y: 1933.72}
+  P1: {x: 765.66, y: 1934.14}
+  divide: {x: 766.32, y: 1732.65}
+  D1: {x: 770.34, y: 1468.2}
+  D2: {x: 464.42, y: 1495.61}
+  D3: {x: 527.46, y: 1624.82}
+  D4: {x: 591.21, y: 1952.38}
+  D5: {x: 483.77, y: 1789.76}
+  D6: {x: 113.03, y: 1528.83}
+  D7: {x: 168.11, y: 1720.42}
+  end_divide: {x: 253.03, y: 1940.69}

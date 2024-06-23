@@ -454,7 +454,7 @@ aria-labelledby="importPanelHeader">
 <!-- Main Content -->
 <div class="container-fluid">
   <div class="row">
-    <div id="diagram-column" class="col-md-7 form-group text-center">
+    <div id="diagram-column" class="col form-group text-center">
       <!-- Diagram -->
       <div id="machine-container" class="form-group">
         <!-- Noscript notice -->
@@ -471,13 +471,13 @@ aria-labelledby="importPanelHeader">
       </div>
       <!-- Simulator controls -->
       <div id="controls-container" class="row text-center">
-        <div class="col-xs-1">
+        <div class="col-xs-1 col-xs-offset-1">
           <button type="button" class="btn btn-warning btn-xs text-center tm-btn-diagram tm-reset">
             <span class="glyphicon glyphicon-fast-backward" aria-hidden="true"></span><br>
             Reset
           </button>
         </div>
-        <div class="col-xs-2 col-xs-offset-4 text-center">
+        <div class="col-xs-1 col-xs-offset-3 text-center">
           <button type="button" class="btn btn-primary text-center tm-btn-diagram tm-step">
             <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span><br>
             Step
@@ -489,23 +489,43 @@ aria-labelledby="importPanelHeader">
             Run
           </button>
         </div>
+        <div class="col-xs-1 col-xs-offset-3">
+          <button type="button" class="btn btn-success text-center tm-btn-diagram tm-answer">
+            <span class="glyphicon glyphicon-play" aria-hidden="true"></span><br>
+            See the String
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 96px;">
+    <!-- Code Editor -->
+    <div class="form-group text-center mx-auto col-md-5">
+      <div id="editor-wrapper">
+        <div id="editor-alerts-container"></div>
+          <button type="button" class="btn btn-primary tm-editor-load">
+            Load machine
+          </button>
+          <button type="button" class="btn btn-default tm-editor-revert">
+            Revert to diagram
+          </button>
+        <div id="editor-container" class="tm-editor"></div>
       </div>
     </div>
 
-    <!-- Code Editor -->
-    <div class="col-md-5 form-group text-center">
-    <div id="editor-wrapper">
-      <div id="editor-alerts-container"></div>
-      <button type="button" class="btn btn-primary tm-editor-load">
-        Load machine
-      </button>
-      <button type="button" class="btn btn-default tm-editor-revert">
-        Revert to diagram
-      </button>
-      <div id="editor-container" class="tm-editor"></div>
-    </div>
+    <div class="col-lg-5" style="margin-top: 32px;">
+      <div class="input-group " style="margin-bottom: 16px;">
+        <span class="input-group-text">String</span>
+        <textarea id="raw_answer" class="form-control" aria-label="String"></textarea>
+      </div>
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1">Answer</span>
+        <input id="decimal_answer" type="text" class="form-control">
+      </div>
     </div>
   </div>
+</div>
 
   <script>
     $(function () {
@@ -522,7 +542,7 @@ aria-labelledby="importPanelHeader">
 
   <hr>
 <!-- Tutorial -->
-<div id="tutorial" class="row">
+<!-- <div id="tutorial" class="row">
   <section class="col-md-4 col-sm-6">
     <h3>Try it out</h3>
     <p>
@@ -771,7 +791,7 @@ table:
     </div>
   </div>
 </div>
-</div>
+</div> -->
 
 <footer class="page-footer">
   <a href="https://github.com/aepsilon/turing-machine-viz" target="_blank" title="View on GitHub">

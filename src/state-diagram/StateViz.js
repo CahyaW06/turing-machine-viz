@@ -200,10 +200,10 @@ function StateViz(container, nodes, linkArray) {
   */
 
   /* eslint-disable no-invalid-this */ // eslint is not familiar with D3
-  var w = 800;
-  var h = 500;
-  var linkDistance = 140;
-  var nodeRadius = 20;
+  var w = 2000;
+  var h = 2100;
+  var linkDistance = 150;
+  var nodeRadius = 25;
 
   var colors = d3.scale.category10();
 

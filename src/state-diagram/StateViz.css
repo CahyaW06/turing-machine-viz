@@ -22,13 +22,13 @@ text {
 }
 
 .nodelabel {
-  font-size: 15px;
+  font-size: 14px;
   stroke: black;
   stroke-width: 0.6;
 }
 
 .edgelabel {
-  font-size: 10px;
+  font-size: 14px;
   fill: #aaa;
   letter-spacing: 0.2em;
 }

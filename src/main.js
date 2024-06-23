@@ -299,7 +299,8 @@ var controller = (function () {
     simulator: {
       run: getButton(sim, 'run'),
       step: getButton(sim, 'step'),
-      reset: getButton(sim, 'reset')
+      reset: getButton(sim, 'reset'),
+      answer: getButton(sim, 'answer'),
     },
     editor: {
       load: getButton(ed, 'editor-load'),

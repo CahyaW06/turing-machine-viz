@@ -30,6 +30,16 @@ function TMSimulator(container, buttons) {
       .addEventListener('click', function () {
         self.machine.reset();
       });
+  buttons.answer
+      .addEventListener('click', function () {
+        var rawAns = document.getElementById('raw_answer');
+        var decAns = document.getElementById('decimal_answer');
+        var answer = self.machine.machine.tape.tape.after.filter(e => e !== ' ').toString().split(',').join("");
+
+        rawAns.innerHTML = answer;
+        decAns.value = answer.length;
+
+      });
   buttons.all = values(buttons);
 
   this.clear();
