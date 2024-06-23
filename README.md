@@ -1,3 +1,9 @@
+Project ini menggunakan source code dari [aepsilon] yang dikembangkan sedemikian rupa agar sesuai dengan bentuk yang saya inginkan. Beberapa bagian yang diubah:
+-   Mengubah ukuran workspace dari diagram turing machine
+-   Menampilkan string yang dihasilkan
+
+Berikut ini deskripsi asli dari repository ini.
+
 # [turingmachine.io](http://turingmachine.io)
 
 This is a [Turing machine] visualizer designed for learning through visual thinking and creative exploration.
@@ -17,6 +23,7 @@ Bug reports and feature requests are also welcome on the [issue tracker].
 Some known issues and ideas for improvement are outlined on the [wiki].
 
 [Turing machine]: http://plato.stanford.edu/entries/turing-machine
+[aepsilon]: https://github.com/aepsilon
 
 [issue tracker]:  https://github.com/aepsilon/turing-machine-viz/issues
 [wiki]:           https://github.com/aepsilon/turing-machine-viz/wiki
